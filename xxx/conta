@@ -1,0 +1,80 @@
+
+
+class Conta:
+    # Construtor
+    def __init__(self, numero, titular, saldo, limite):
+        print(f"Construindo objeto ... {self}")
+        self.__numero = numero
+        self.__titular = titular
+        self.__saldo = saldo
+        self.__limite = limite
+
+    #retorna o saldo da conta
+    def extrato(self):
+        print(f"O saldo {self.__saldo} do titular {self.__titular}")
+
+    #deposita um valor na conta
+    def deposita(self, valor):
+        self.__saldo += valor
+
+    def __pode_saca(self, valor_saca):
+        valor_diponivel_para_saca = self.__saldo + self.__limite
+        return valor_saca <= valor_diponivel_para_saca
+
+    #sacar um valor da conta
+    def saca(self, valor):
+        #se o valor for maior que o saldo + limite, não pode sacar.
+        if(self.__pode_saca(valor)):
+            self.__saldo -= valor
+        else:
+            print(f"O valor {valor} é maior que o limite")
+
+    #trasfere um valor de uma conta a outra
+    def transferir(self, valor, destino):
+        self.saca(valor)
+        destino.deposita(valor)
+
+    #getters
+    #retorna o saldo da conta
+    @property
+    def saldo(self):
+        return self.__saldo
+
+    #retorna o titular da conta
+    @property
+    def titular(self):
+        return self.__titular
+
+    #retorna o limite da conta
+    @property
+    def limite(self):
+        return self.__limite
+
+    #setters
+    #altera o limite da conta
+    @limite.setter
+    def limite(self, limite):
+        self.__limite = limite
+    #staticmethod sao metodos que não precisam de um objeto para ser chamado e não precisam de um atributo para ser chamado
+    #e são propios da classe
+    @staticmethod
+    def codigo_banco():
+        return "001"
+    
+    @staticmethod
+    def codigos_bancos():
+        return {'BB': '001', 'Caixa': '104', 'Bradesco': '237'}
+
+#fim da classe Conta
+
+
+conta = Conta(123, "Nico", 55.5, 1000.0)
+conta2= Conta(321, "junin", 150.0, 1000.0)
+conta.extrato()
+conta2.extrato()
+
+conta2.transferir(100, conta)
+
+conta.extrato()
+conta2.extrato()
+
