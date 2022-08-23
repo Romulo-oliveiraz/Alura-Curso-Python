@@ -28,7 +28,7 @@ class Programa:
     def __str__(self):
         f'{self._nome} - {self.ano} - Likes: {self._likes}'
 
-
+#é um programa
 class Filme(Programa):
     def __init__(self, nome, ano, duracao):
         #puxa o construtor da classe principal
@@ -37,7 +37,7 @@ class Filme(Programa):
     def __str__(self):
         return f'{self._nome} - {self.ano} - {self.duracao} Minutos - Likes: {self._likes}'
     
-
+#é um programa
 class Serie(Programa):
     def __init__(self, nome, ano, temporadas):
         #puxa o construtor da classe principal
@@ -47,12 +47,19 @@ class Serie(Programa):
         return f'{self._nome} - {self.ano} - {self.temporadas} Temporadas - Likes: {self._likes}'
 
 #herda para a classe a função list
-class Playlist(list):
+#é uma lista de programas
+class Playlist:
     def __init__(self, nome, programas):
-        super().__init__(programas)
         self.nome = nome
-        self.programas = programas
+        self._programas = programas
     
+    @property
+    def listagem(self):
+        return self._programas
+
+    @property
+    def tamanho(self):
+        len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 thor = Filme('thor - love and thunder', 2022, 130)
@@ -76,9 +83,7 @@ vingadores.dar_likes()
 filmes_e_series = [vingadores, suits, lucifer, thor]
 playlist_fds = Playlist('fim de semana', filmes_e_series)
 
-print(f'Tamanho da playlist: {len(playlist_fds)}')
+print(f'Tamanho da playlist: {len(playlist_fds.listagem)}')
 
-for programa in playlist_fds:
+for programa in playlist_fds.listagem:
     print(programa)
-
-print(f'Ta ou não ta? {thor in playlist_fds}')
