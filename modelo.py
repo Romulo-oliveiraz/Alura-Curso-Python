@@ -1,6 +1,3 @@
-
-
-
 class Programa:
     def __init__(self, nome, ano):
         self._nome = nome.title()
@@ -53,6 +50,11 @@ class Playlist:
         self.nome = nome
         self._programas = programas
     
+    #é chamado tambem de duck typing
+    #define alguem como interavel
+    def __getitem__(self, item):
+        return self._programas[item]
+
     @property
     def listagem(self):
         return self._programas
@@ -83,7 +85,7 @@ vingadores.dar_likes()
 filmes_e_series = [vingadores, suits, lucifer, thor]
 playlist_fds = Playlist('fim de semana', filmes_e_series)
 
-print(f'Tamanho da playlist: {len(playlist_fds.listagem)}')
+print(f'Tamanho da playlist: {len(playlist_fds.)}')
 
-for programa in playlist_fds.listagem:
+for programa in playlist_fds:
     print(programa)
