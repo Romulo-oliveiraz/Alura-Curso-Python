@@ -1,3 +1,30 @@
+##############################################################################################################################
+# PYTOHN - ANVANÇANDO NA ORIENTAÇÃO A OBJETOS - CURSO ALURA
+##############################################################################################################################
+# PYTHON DATA MODEL - Protocolos:
+# INICIALIZAÇÃO: __init__ : inicialização de um objeto -> obj = novo()
+
+# REPRESENTAÇÃO: __str__ : representa em forma de string para exibir ao usuario final -> str(objeto)
+#               __repr__ : utiliza-se para exibir o objeto ao progamador usada pelo console do python -> repr(objeto)
+
+# CONTAINER, SEQUENCIA: __contains__ : verifica se o elemento existe na sequencia
+#                       __len__ : retorna o tamanho da sequencia -> len(objeto)
+#                       __getitem__ : retorna o elemento da sequencia a partir de um indice
+#                       __setitem__ : altera o elemento da sequencia a partir de um indice
+#                       __delitem__ : deleta o elemento da sequencia a partir de um indice
+#                       __iter__ : retorna um iterador para a sequencia
+#                       ex: item in obj, for i in obj, obj[2:3]
+
+# NÚMEIRICOS: __add__ : soma dois números
+#             __sub__ : subtrai dois números
+#             __mul__ : multiplica dois números
+#             __truediv__ : divide dois números
+#             __mod__ : retorna o resto da divisão dois números
+#             ex: obj1 + obj2, obj1 - obj2, obj1 * obj2, obj1 / obj2, obj1 % obj2 
+# COMPOSIÇÃO: "TEM EM" , diminui o acoplamento entre classes
+# HEXTENSÃO: "É UM", aumenta o acoplamento entre classes
+##############################################################################################################################
+
 class Programa:
     def __init__(self, nome, ano):
         self._nome = nome.title()
@@ -59,25 +86,20 @@ class Playlist:
     def listagem(self):
         return self._programas
 
-    @property
-    def tamanho(self):
-        len(self._programas)
+    #utiliza um magic method para adc uma fjnça de sized para a classe.
+    def __len__(self):
+        return len(self._programas)
 
 vingadores = Filme('vingadores - guerra infinita', 2018, 160)
 thor = Filme('thor - love and thunder', 2022, 130)
 lucifer = Serie('lucifer', 2015, 6)
 suits = Serie('suits', 2018, 9)
 
-thor.dar_likes()
-thor.dar_likes()
-thor.dar_likes()
-lucifer.dar_likes()
-suits.dar_likes()
-suits.dar_likes()
-lucifer.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
-vingadores.dar_likes()
+for i in range(1, 101):
+    vingadores.dar_likes()
+    suits.dar_likes()
+    lucifer.dar_likes()
+    thor.dar_likes()
 
 # print(f'Nome: {vingadores.nome} - Likes: {vingadores.likes}')
 # print(f'Nome: {suits.nome} - Likes: {suits.likes}')
@@ -85,7 +107,7 @@ vingadores.dar_likes()
 filmes_e_series = [vingadores, suits, lucifer, thor]
 playlist_fds = Playlist('fim de semana', filmes_e_series)
 
-print(f'Tamanho da playlist: {len(playlist_fds.)}')
+print(f'Tamanho da playlist: {len(playlist_fds)}')
 
 for programa in playlist_fds:
     print(programa)
