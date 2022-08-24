@@ -1,4 +1,13 @@
+####################################################################################################################
+# Os mixins são classes herdadas que não precisam ser instanciadas e contém preocupações comuns a diversas classes.
+
+# Podemos usar composição para substituir herança como boa prática de orientação a objetos.
+####################################################################################################################
+
 class Funcionario:
+    def __init__(self, nome):
+        self.nome = nome
+
     def registra_horas(self, horas):
         print('Horas registradas...')
 
@@ -15,8 +24,24 @@ class Caelum(Funcionario):
 
 class Alura(Funcionario):
     #sobescreve o metodo da classe herdada
-    def mostrar_tarefas(self):
-        print('Fez muita coisa, Alurete!')
+    # def mostrar_tarefas(self):
+    #     print('Fez muita coisa, Alurete!')
     #methodos especificos de cada classe
     def busca_perguntas_sem_resposta(self):
         print('Mostrando perguntas não respondidas do fórum')
+#chamada de classe MIXIN
+class hipster:
+    def __str__(self):
+        return f'Hipster, {self.nome}'
+
+class Junior(Alura):
+    pass
+
+class Pleno(Alura, Caelum):
+    pass
+
+class Senior(Alura, Caelum, hipster):
+    pass
+
+luan = Senior('Luan')
+print(luan)
