@@ -44,4 +44,5 @@ class Senior(Alura, Caelum, hipster):
     pass
 
 luan = Senior('Luan')
+luan.mostrar_tarefas()
 print(luan)

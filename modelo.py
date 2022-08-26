@@ -21,6 +21,7 @@
 #             __truediv__ : divide dois números
 #             __mod__ : retorna o resto da divisão dois números
 #             ex: obj1 + obj2, obj1 - obj2, obj1 * obj2, obj1 / obj2, obj1 % obj2 
+
 # COMPOSIÇÃO: "TEM EM" , diminui o acoplamento entre classes
 # HEXTENSÃO: "É UM", aumenta o acoplamento entre classes
 ##############################################################################################################################
@@ -60,6 +61,8 @@ class Filme(Programa):
         self.duracao = duracao
     def __str__(self):
         return f'{self._nome} - {self.ano} - {self.duracao} Minutos - Likes: {self._likes}'
+    def __eq__(self, outro_ano):
+        return self.ano == outro_ano.ano
     
 #é um programa
 class Serie(Programa):
@@ -108,6 +111,18 @@ filmes_e_series = [vingadores, suits, lucifer, thor]
 playlist_fds = Playlist('fim de semana', filmes_e_series)
 
 print(f'Tamanho da playlist: {len(playlist_fds)}')
+
+
+ano_procurado = Filme('thor', 2022, 130)
+#FAZ UMA COMPARAÇÃO ENTRE OS OBJETOS.
+def procurar_ano(ano_procurado, filmes_e_series):
+    return ano_procurado in filmes_e_series
+
+if procurar_ano(ano_procurado, filmes_e_series):
+    print('está na playlist')
+else:
+    print('não está na playlist')
+    
 
 for programa in playlist_fds:
     print(programa)
