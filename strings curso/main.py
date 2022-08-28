@@ -14,7 +14,11 @@
 from re import I
 
 
-url = "https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real"
+# url = "https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real"
+url = " ".strip()
+
+if url == "":
+    raise ValueError("URL não pode ser vazia")
 print(url)
 #vai ler a string ate o caracter '?'
 # url_base = url[:url.find('?')]
