@@ -1,9 +1,0 @@
-from pytube import YouTube
-
-yt = YouTube('https://www.youtube.com/watch?v=wqh8Z59rMI4')  # Download YouTube Rewind 2019
-streams = set()
-
-for stream in yt.streams.filter(type="video"):  # Only look for video streams to avoid None values
-    streams.add(stream.resolution)
-
-print(streams)
