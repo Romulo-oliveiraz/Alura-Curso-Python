@@ -1,16 +1,3 @@
-#########################################################################################################
-#   CURSO SOBRE STRINGS E EXTRAÇÃO DE DADOS DE UMA URL.
-
-#HTTPS://TWITTER.COM/SEARCH?Q=alura&src=typd
-#SEARCH = pesquisa
-#Q = ao qual vai ser pesquisado
-#src = tipo de pesquisa
-
-#ex: https://bytebank.com/cambio?moedaorigem=real&moedadestino=dolar&valor=R$100
-#
-#texto[inicio:fim-1]
-#methodo find() é usado para buscar na string a posição do caracter passado como parâmetro.
-#########################################################################################################
 from re import I
 
 
