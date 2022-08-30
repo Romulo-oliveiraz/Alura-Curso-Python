@@ -1,9 +1,3 @@
-####################################################################################################################
-# Os mixins são classes herdadas que não precisam ser instanciadas e contém preocupações comuns a diversas classes.
-
-# Podemos usar composição para substituir herança como boa prática de orientação a objetos.
-####################################################################################################################
-
 class Funcionario:
     def __init__(self, nome):
         self.nome = nome
