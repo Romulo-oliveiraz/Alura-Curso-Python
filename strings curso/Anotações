@@ -11,3 +11,15 @@
 # texto[inicio:fim-1]
 # methodo find() é usado para buscar na string a posição do caracter passado como parâmetro.
 #########################################################################################################
+# REGEX:
+
+# - determina o num inicial e o num final ex[1-9] num de 1 a 9
+# ? mostra q o caractere pode ou n aparecer
+# {} apos um conjunto determina quantas vezes ele vai aparecer.
+# re.compile(pattern, flags=0): Compila um padrão de expressão regular em um objeto expressão regular, que pode ser usado para correspondência usando seu match(), search()
+
+# re.search(pattern, string, flags=0): Percorre a string procurando o primeiro local onde o padrão pattern de expressão regular produz uma correspondência e retorna um objeto correspondência encontrado. Retorna None se nenhuma posição na string corresponder ao padrão
+
+# re.match(pattern, string, flags=0):Se zero ou mais caracteres no início da string corresponderem ao padrão pattern da expressão regular, retorna um objeto correspondência encontrado. Retorna None se a string não corresponder ao padrão; observe que isso é diferente de uma correspondência de comprimento zero.
+
+# match.group([group1, ...]): Retorna um ou mais subgrupos da correspondência. Se houver um único argumento, o resultado será uma única string; se houver vários argumentos, o resultado é uma tupla com um item por argumento

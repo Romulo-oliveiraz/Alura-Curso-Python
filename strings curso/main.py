@@ -1,4 +1,4 @@
-from re import I
+import re
 
 
 # url = "https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real"

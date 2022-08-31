@@ -1,0 +1,14 @@
+import re
+from tkinter import E
+endereço = "Rua da Flores 72, apartamento 1002, laranjeiras, Rio De Janeiro. RJ, 23440-120"
+
+#padrão de um cep
+# ? ou {0,1} mostra q o caractere pode ou n aparecer
+# {} apos um conjunto determina quantas vezes ele vai aparecer.
+# - determina o num inicial e o num final ex[1-9] num de 1 a 9
+padrao = re.compile("[0-9]{5}[-]?[0-9]{3}")
+buscar = padrao.search(endereço)
+if buscar:
+    #group = retorna a string que bateu com o padrão.
+    cep = buscar.group()
+    print(cep)
