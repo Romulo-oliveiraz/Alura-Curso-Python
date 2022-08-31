@@ -1,8 +1,8 @@
 import re
 
 
-# url = "https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real"
-url = " ".strip()
+url = "https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real"
+# url = " ".strip()
 
 if url == "":
     raise ValueError("URL não pode ser vazia")
@@ -31,4 +31,9 @@ if url_e == -1:
 else:
     print(url_parametros[indice:url_e])
 
-print(indice)
+padrao_url = re.compile('(http(s)?://)?(www.)?bytebank.com(.br)?/cambio')
+match = padrao_url.match(url)
+if not match:
+    raise ValueError('URL inválida')
+
+print("URL válida")

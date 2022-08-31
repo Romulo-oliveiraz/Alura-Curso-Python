@@ -1,5 +1,4 @@
 import re
-from tkinter import E
 endereço = "Rua da Flores 72, apartamento 1002, laranjeiras, Rio De Janeiro. RJ, 23440-120"
 
 #padrão de um cep
