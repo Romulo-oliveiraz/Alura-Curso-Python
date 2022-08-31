@@ -27,3 +27,6 @@
     busca se a str inteira segue um determinado padrao
 
 # match.group([group1, ...]): Retorna um ou mais subgrupos da correspondência. Se houver um único argumento, o resultado será uma única string; se houver vários argumentos, o resultado é uma tupla com um item por argumento
+
+###########################################################################################################
+# is e ==: https://www.alura.com.br/artigos/qual-a-diferenca-entre-e-is-no-python

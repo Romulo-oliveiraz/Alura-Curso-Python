@@ -55,15 +55,12 @@ class ExtratorUrl:
         return len(self.url)
 
     def __str__(self):
-        return self.url + "\n" + "BASE: " + self.get_url_base() + "\n" + "PARAMETROS: " + self.get_url_parametros()
+        return "URL: " + self.url + "\n" + "BASE: " + self.get_url_base() + "\n" + "PARAMETROS: " + self.get_url_parametros()
 
 extrator_url = ExtratorUrl("https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real")
 extrator_url2 = ExtratorUrl("https://bytebank.com/cambio?moedaDestino=dolar&moedaOrigem=real")
-v = extrator_url.get_url_base()
-c = extrator_url.get_url_parametros()
-x = extrator_url.get_valor_parametros("moedaDestino")
-# print(v)
-# print(c)
-# print(x)
-# print(extrator_url)
+# v = extrator_url.get_url_base()
+# c = extrator_url.get_url_parametros()
+# x = extrator_url.get_valor_parametros("moedaDestino")
+print(extrator_url)
 print(extrator_url == extrator_url2)
