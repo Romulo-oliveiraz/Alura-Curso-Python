@@ -1,5 +1,5 @@
 #########################################################################################################
-# CURSO SOBRE STRINGS E EXTRAÇÃO DE DADOS DE UMA URL.
+CURSO SOBRE STRINGS E EXTRAÇÃO DE DADOS DE UMA URL.
 
 # HTTPS://TWITTER.COM/SEARCH?Q=alura&src=typd
 # SEARCH = pesquisa
@@ -11,7 +11,7 @@
 # texto[inicio:fim-1]
 # methodo find() é usado para buscar na string a posição do caracter passado como parâmetro.
 #########################################################################################################
-# REGEX:
+REGEX:
 # HOWTO RegEx: https://docs.python.org/pt-br/3/howto/regex.html#regex-howto
 >() determina q oq esta dentro deve ser igual ao da str
 >[] busca algum dos caracteres dentro do []
@@ -29,4 +29,12 @@
 # match.group([group1, ...]): Retorna um ou mais subgrupos da correspondência. Se houver um único argumento, o resultado será uma única string; se houver vários argumentos, o resultado é uma tupla com um item por argumento
 
 ###########################################################################################################
+Diferença entre o == e o is:
+
 # is e ==: https://www.alura.com.br/artigos/qual-a-diferenca-entre-e-is-no-python
+
+#O is compara a identidade do objeto, isto é, o valor de referência de seu endereço na memória, não o valor definido por nós. 
+# Já o == compara o valor do objeto, ou seja, o valor que definimos para ele.
+# is para comparar se é o mesmo objeto
+# == para comparar se o valor é o mesmo
+# String interning é uma técnica que força o armazenamento de apenas uma cópia de cada valor de string diferente na memória do computador.
