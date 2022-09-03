@@ -1,0 +1,17 @@
+>Python Collections parte 1: listas e tuplas
+# lista:
+É uma sequencia de elementos que é de acesso aleatorio.
+É uma sequencia mutavel.
+Começa a contagem dos elementos a partir do 0
+Para acessar algum elemento pode se usar: <NOME_DA_LISTA>[<pos_do_elemento>]
+Adc elemento se usa <NOME_DA_LISTA>.append[<ELEMENTO>] obs. adc no fim da lista
+Remv elemento se usa <NOME_DA_LISTA>.remove[<ELEMENTO>] obs. remove somente o primeiro elemento q aparece.
+limpa os elementos da lista <NOME_DA_LISTA>.clear()
+<NOME_DA_LISTA>.clear(<Posição>, <ELEMENTO>)
+<NOME_DA_LISTA>.extend(<outra_lista>): mescla um lista com a outra, ex idades.extend([12,31])
+# tupla:
+é uma sequencia imutavel
+    variação funcional:
+        Se for preciso mudar algo na tupla, se faz uma func q criar uma nova tupla com o valor alterado e apos isso é necessario atribuir essa tupla para a variavel.
+    indicado ao utilizar valores q serão fixos.
+    Pode referenciar Objetos, não afetando a modificação de dados deles.
