@@ -1,17 +1,43 @@
 >Python Collections parte 1: listas e tuplas
 # lista:
-É uma sequencia de elementos que é de acesso aleatorio.
-É uma sequencia mutavel.
-Começa a contagem dos elementos a partir do 0
-Para acessar algum elemento pode se usar: <NOME_DA_LISTA>[<pos_do_elemento>]
-Adc elemento se usa <NOME_DA_LISTA>.append[<ELEMENTO>] obs. adc no fim da lista
-Remv elemento se usa <NOME_DA_LISTA>.remove[<ELEMENTO>] obs. remove somente o primeiro elemento q aparece.
-limpa os elementos da lista <NOME_DA_LISTA>.clear()
-<NOME_DA_LISTA>.clear(<Posição>, <ELEMENTO>)
-<NOME_DA_LISTA>.extend(<outra_lista>): mescla um lista com a outra, ex idades.extend([12,31])
+
+    É uma sequencia de elementos que é de acesso aleatorio.
+    É uma sequencia mutavel.
+    Começa a contagem dos elementos a partir do 0
+    Para acessar algum elemento pode se usar: <NOME_DA_LISTA>[<pos_do_elemento>]
+    Adc elemento se usa <NOME_DA_LISTA>.append[<ELEMENTO>] obs. adc no fim da lista
+    Remv elemento se usa <NOME_DA_LISTA>.remove[<ELEMENTO>] obs. remove somente o primeiro elemento q aparece.
+    limpa os elementos da lista <NOME_DA_LISTA>.clear()
+    <NOME_DA_LISTA>.clear(<Posição>, <ELEMENTO>)
+    <NOME_DA_LISTA>.extend(<outra_lista>): mescla um lista com a outra, ex idades.extend([12,31])
 # tupla:
-é uma sequencia imutavel
+
+É uma sequencia imutavel
     variação funcional:
         Se for preciso mudar algo na tupla, se faz uma func q criar uma nova tupla com o valor alterado e apos isso é necessario atribuir essa tupla para a variavel.
     indicado ao utilizar valores q serão fixos.
     Pode referenciar Objetos, não afetando a modificação de dados deles.
+# NumPY
+
+    Evite usar array puro pois para trabalhar com numeros é recomendavel ->
+    -> usar o NumPY para trabalhar com arrays, pois ele é mais rapido e eficiente.
+
+np.array([<numeros>]): cria um array com os numeros
+    EX D ARRAYS:
+>ARRAY PURO, NELE É PRECISO DEFINIR O TIPO Q SÃO OS ELEMENTOS
+    import array as arr
+    print(arr.array('d', [1, 3.5]))
+>ARRAY NUMPY, UTILIZADO PARA TRABALHAR ESPECIALMENTE COM NUMEROS
+    import numpy as np
+    numeros = np.array([1, 3.5]) + 3 # soma 3 a cada elemento
+    print(numeros)
+
+# Abstract method
+    é mais usado pois mostra o erro ao tentar instanciar
+    e não quando for executar a função!
+
+    É um decorator, dizendo que é um método abstrato, 
+    um @abstractmethod. Então, eu não estou implementando.
+    Para importar: from abc import ABCMeta, abstractmethod. 
+    Usamos o ABCmeta como uma meta classe, metaclass. 
+    É uma configuração que precisamos colocar: class <NOME_DA_CLASSE>(metaclass=ABCMeta)

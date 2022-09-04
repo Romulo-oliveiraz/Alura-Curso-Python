@@ -35,6 +35,7 @@ deposita_all(contas)
 # print(contas[0], contas[1], contas[2])
 for conta in contas:
     print(conta,end=' ')
+print()
 
 # print(contas)
 # print(gui)
