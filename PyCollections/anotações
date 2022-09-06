@@ -41,3 +41,7 @@ np.array([<numeros>]): cria um array com os numeros
     Para importar: from abc import ABCMeta, abstractmethod. 
     Usamos o ABCmeta como uma meta classe, metaclass. 
     É uma configuração que precisamos colocar: class <NOME_DA_CLASSE>(metaclass=ABCMeta)
+
+# Isinstance:
+    isinstance(<OBJETO>, <TIPO>): retorna True se o objeto for do tipo especificado, False caso contrario.
+    
