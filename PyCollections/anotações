@@ -44,4 +44,19 @@ np.array([<numeros>]): cria um array com os numeros
 
 # Isinstance:
     isinstance(<OBJETO>, <TIPO>): retorna True se o objeto for do tipo especificado, False caso contrario.
+
+# Sorted e Reversed
+> NÃO AFETA A LISTA.
+   sorted(<LISTA>) ordena todos os elementos da lista do menor p/ o maior
+   reversed(<LISTA>) bota a ordem dos elementos de tras para frente.
+>  ou para botar em ordem de valor:
+   sorted(<LISTA>, reverse=True) no caso ele coloca na ordem os elementos do maior p/ o menor
+   lista com objs = sorted(<LISTA>, key=<ALGO DO OBJ PARA SER COMPARADO>):
+>Para alterar na lista se usa 
+    <LISTA>.sort() coloca a lista em ordem crescente
+    <LISTA>.sort(reverse=True) coloca a lista em ordem crescente
+    <LISTA>.reverse() bota a ordem dos elementos de tras para frente.
+>Ordernar objs 
+    __lt__(self, outro): é necessario adc este methodo caso queira ordenar uma lista com objetos
+    functools total_ordering: dá para classe outras comparações no caso <= >= necessitando apenas adc os methodos eq e lt
     
