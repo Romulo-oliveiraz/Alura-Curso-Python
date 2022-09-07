@@ -1,4 +1,4 @@
-
+from calculos import Calculos
 import PySimpleGUI as sg
 def janela1():
 

@@ -1,0 +1,14 @@
+class Calculadora:
+    def __init__(self, num, num2):
+        self.num = num
+        self.num2 = num2
+        self.resultado = 0
+    def soma(self):
+        self.resultado = self.num + self.num2
+    def subtracao(self):
+        self.resultado = self.num - self.num2
+    def multiplicacao(self):
+        self.resultado = self.num * self.num2
+    def divisao(self):
+        self.resultado = self.num // self.num2
+    
