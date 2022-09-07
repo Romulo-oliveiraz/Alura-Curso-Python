@@ -1,4 +1,5 @@
-from calculos import Calculos
+
+
 import PySimpleGUI as sg
 def janela1():
 
@@ -42,5 +43,29 @@ while True:
     elif str(button) in '0123456789.+-x/':
         equal += str(button)
         form.find_element('input').Update(equal)
+    #ERROR
+    if '-' in equal[0]:
+        equal = ""
+        form.find_element('input').Update(equal)
+        sg.Popup('Não é possível fazer operações com números negativos')
+    elif '/' in equal[0]:
+        equal = ""
+        form.find_element('input').Update(equal)
+        sg.Popup('Não é possível fazer operações com números negativos')
+    elif '+' in equal[0]:
+        equal = ""
+        form.find_element('input').Update(equal)
+        sg.Popup('Não é possível fazer operações com números negativos')
+    elif 'x' in equal[0]:
+        equal = ""
+        form.find_element('input').Update(equal)
+        sg.Popup('Não é possível fazer operações com números negativos')
+    elif '.' in equal[0]:
+        equal = "0."
+        form.find_element('input').Update(equal)
+    # elif button == '=':
+    #     if equal.strip == "":
+    #         sg.Popup('Não é possível fazer operações com números negativos')
+      
 
 

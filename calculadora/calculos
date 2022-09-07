@@ -12,3 +12,5 @@ class Calculadora:
     def divisao(self):
         self.resultado = self.num // self.num2
     
+def test():
+    pass

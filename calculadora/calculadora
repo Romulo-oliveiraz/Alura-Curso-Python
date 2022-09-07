@@ -1,142 +1,86 @@
 import math
-option = 0
-opção = 0
-opção2 = 0
-while option != 3:
-    print('''Qual matéria deseja:
-    [ 1 ] Algebra
-    [ 2 ] Geometria
-    [ 3 ] Fechar terminal
-    ''')
-    option = int(input('Digite sua opção: '))
-    print('-='*10)
+def soma(num1, num2):
+    num1 = int(input('digite o primeiro valor:'))
+    num2 = int(input('digite o segundo valor:'))
+    soma = num1 + num2
+    return soma
 
-    
-    if option == 1:  
-        while opção != 11:
-        
-            print('''Oque deseja fazer:
-        [ 1 ] somar
-        [ 2 ] subtração
-        [ 3 ] multiplicar
-        [ 4 ] Divisão
-        [ 5 ] maior
-        [ 6 ] Equação de segundo grau
-        [ 7 ] Potênciação
-        [ 8 ] Raiz Quadrada
-        [ 9 ] verificar se numero é par ou impar.
-        [ 10 ] sair do programa''')
-            opção = int(input('Digite sua opção: '))
-            print('-='*10)
-#===========SOMA=======================================================================
-            if opção == 1:
-                num1 = int(input('digite o primeiro valor:'))
-                num2 = int(input('digite o segundo valor:'))
-                soma = num1 + num2
-                print(f'a SOMA destes dois valores é {soma}')
 #===========SUBTRÇÃO=======================================================================
-            elif opção == 2:
-                num1 = int(input('digite o primeiro valor:'))
-                num2 = int(input('digite o segundo valor:'))
-                if num1 > num2:
-                    sub = num1 - num2
-                else:
-                    sub = num2 - num1 
-                print(f'a subtração dos numeros {num1} e {num2} é {sub}')
-#===========MULTIPLICAÇÃO=======================================================================
-            elif opção == 3:
-                num1 = int(input('digite o primeiro valor:'))
-                num2 = int(input('digite o segundo valor:'))
-                multi = num1 * num2
-                print(f'A MUTIPLICAÇÃO dos dois numeros é {multi}')
-#===========DIVISÃO=======================================================================
-            elif opção == 4:
-                num1 = int(input('digite o primeiro valor:'))
-                num2 = int(input('digite o segundo valor:'))
-                divi = num1 // num2
-                print(f'A divisão entre {num1} e {num2} é {divi}')
-#===========MAIOR VALOR=======================================================================
-            elif opção == 5:
-                num1 = int(input('digite o primeiro valor:'))
-                num2 = int(input('digite o segundo valor:'))
-                if num1 > num2:
-                    print('o primeiro valor é maior')
-                else:
-                    print('o segundo valor é maior')
-#===========EQUAÇÃO=======================================================================
-            elif opção == 6:
-                a = int(input('Qual o valor de a?'))
-                b = int(input('Qual o valor de b?'))
-                c = int(input('qual o valor de c?'))
-                print(a)
-                delta = (math.pow(b, 2)) - (4 * a * c)
-                x1 = ((-b + math.sqrt(delta))//2*a)
-                x2 = ((-b - math.sqrt(delta))//2*a)
-                print(f'O resultado da equação é: x1 = {x1:.0f} e x2 = {x2:.0f}')
-#===========POTENCIAÇÃO======================================================================
-            elif opção == 7:
-                num1 = int(input('Digite o valor:'))
-                pot = int(input('Qual a pontenciação?'))
-                res = pow(num1, pot)
-                print(f'O resultado da potência é {res}')
-#===========RAIZ QUADRADA=======================================================================
-            elif opção == 8:
-                num1 = int(input('Digite o valor:'))
-                raiz = math.sqrt(num1)
-                print(f'O resultado da raiz quadrada é {raiz}')
-#===========PAR OU IMPAR=======================================================================
-            elif opção == 9:
-                num3 = int(input('Digite um numero:'))
-                r = num3 % 2
-                if r == 0:
-                    print(f'O numero {num3} é par.')
-                else:
-                    print(f'O numero {num3} é impar.')
-#===========FINALIZADOR=======================================================================            
-            elif opção == 10:
-                print('Finalizando...')
-#==================================================================================
-            else:
-                print('Valor invalido tente novamente.')
-            print('-='*10)
-#==================================================================================
-    elif option == 2:
-        
-        while opção2 != 4:
-            print('''O que deseja:
-            [ 1 ] Verificar se é possivel fazer um triangulo.
-            [ 2 ] Hipotenusa.
-            [ 3 ] Verificar cos, sen, tang, de um ângulo.
-            [ 4 ] Fechar programa.
-            ''')
-            opção2 = int(input('Digite sua opção: '))
-            print('-='*10)
-#===========VERIFICADOR DE FORMAÇÃO DO TRIANGULO=======================================================================
-            if opção2 == 1:
-                n1 = float(input('Primeiro seguimento:'))
-                n2 = float(input('Segundo seguimento:'))
-                n3 = float(input ('Terceiro seguimento'))
-                if n1 < n2+n3 and n2 < n1+n3 and n3 < n2+n1:
-                    print('Com estes segmentos é possivel formar um triangulo')
-                else:
-                    print('Não é possivel formar um triangulo com estes seguimentos.')
-#===========HIPOTENUSA=======================================================================
-            elif opção2 == 2: 
-                ca = float(input('Digite o valor do cateto adjacente:'))
-                co = float(input('Digite o valor do cateto oposto:'))
-                h = math.hypot(ca, co)
-                print('A hipotenusa será {:.2f}'.format(h))
-#===========ANGULO=======================================================================
-            elif opção2 == 3:
-                a = float(input('digite o angulo desejado:'))
-                s = math.sin(math.radians(a))
-                c = math.cos(math.radians(a))
-                t = math.tan(math.radians(a))
-                print('O angulo {} tem o seno de {:.2f}, a tangente de {:.2f} e o cosseno de {:.2f}.'.format(a, s, t, c))   
-#==================================================================================
-    elif option == 4:
-        print('Fechando terminal...')
-#==================================================================================    
+def subtracao(num1, num2):
+    num1 = int(input('digite o primeiro valor:'))
+    num2 = int(input('digite o segundo valor:'))
+    if num1 > num2:
+        sub = num1 - num2
     else:
-        print('Valor invalido tente novamente.')
-    print('-='*10)
+        sub = num2 - num1 
+    return sub
+
+#===========MULTIPLICAÇÃO=======================================================================
+def multiplicacao(num1, num2):
+    num1 = int(input('digite o primeiro valor:'))
+    num2 = int(input('digite o segundo valor:'))
+    multi = num1 * num2
+    return multi
+#===========DIVISÃO=======================================================================
+def divisao(num1, num2):
+    num1 = int(input('digite o primeiro valor:'))
+    num2 = int(input('digite o segundo valor:'))
+    divi = num1 // num2
+    return divi
+#===========MAIOR VALOR=======================================================================
+def maior(num1, num2):
+    num1 = int(input('digite o primeiro valor:'))
+    num2 = int(input('digite o segundo valor:'))
+    if num1 > num2:
+        return ('o primeiro valor é maior')
+    else:
+        return ('o segundo valor é maior')
+#===========EQUAÇÃO=======================================================================
+def equacao(a,b,c):
+    a = int(input('Qual o valor de a?'))
+    b = int(input('Qual o valor de b?'))
+    c = int(input('qual o valor de c?'))
+    delta = (math.pow(b, 2)) - (4 * a * c)
+    x1 = ((-b + math.sqrt(delta))//2*a)
+    x2 = ((-b - math.sqrt(delta))//2*a)
+    return f'O resultado da equação é: x1 = {x1:.0f} e x2 = {x2:.0f}'
+#===========POTENCIAÇÃO======================================================================
+def potenciacao(num1, num2):
+    num1 = int(input('digite o primeiro valor:'))
+    num2 = int(input('digite o segundo valor:'))
+    pot = math.pow(num1, num2)
+    return pot
+#===========RAIZ QUADRADA=======================================================================
+def raiz(num1):
+    num1 = int(input('digite o valor:'))
+    raiz = math.sqrt(num1)
+    return raiz
+#===========PAR OU IMPAR=======================================================================
+def par_impar(num1):
+    num1 = int(input('digite o valor:'))
+    if num1 % 2 == 0:
+        return 'é par'
+    else:
+        return 'é impar'
+#===========VERIFICADOR DE FORMAÇÃO DO TRIANGULO=======================================================================
+def triangulo(n1,n2,n3):
+    n1 = float(input('Primeiro seguimento:'))
+    n2 = float(input('Segundo seguimento:'))
+    n3 = float(input ('Terceiro seguimento'))
+    if n1 < n2+n3 and n2 < n1+n3 and n3 < n2+n1:
+        return ('Com estes segmentos é possivel formar um triangulo')
+    else:
+        return ('Não é possivel formar um triangulo com estes seguimentos.')
+#===========HIPOTENUSA=======================================================================
+def hipotenusa(cat1, cat2):
+    cat1 = int(input('Digite o valor do cateto adjacente:'))
+    cat2 = int(input('Digite o valor do cateto oposto:'))
+    hip = math.sqrt(math.pow(cat1, 2) + math.pow(cat2, 2))
+    return f'O valor da hipotenusa é: {hip:.2f}'
+#===========ANGULO=======================================================================
+def angulo(cat1, cat2):
+    cat1 = int(input('Digite o valor do cateto adjacente:'))
+    cat2 = int(input('Digite o valor do cateto oposto:'))
+    ang = math.atan(cat1/cat2)
+    return f'O valor do angulo é: {ang:.2f}'
+
