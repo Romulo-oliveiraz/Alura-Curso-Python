@@ -40,7 +40,10 @@ while True:
     elif button == '<<':
         equal = equal[:-1]
         form.find_element('input').Update(equal)
-    elif str(button) in '0123456789.+-x/':
+    elif str(button) in '0123456789.+-/':
+        equal += str(button)
+        form.find_element('input').Update(equal)
+    elif str(button) in 'x':
         equal += str(button)
         form.find_element('input').Update(equal)
     #ERROR
@@ -64,5 +67,13 @@ while True:
         elif '.' in equal[0]:
             equal = "0."
             form.find_element('input').Update(equal)
-        
+    if button == '=':
+        if '+' in equal[-1]:
+            equal = equal[:-1] 
+            form.find_element('input').Update(equal)
+        if 'x' in equal:
+            equal = equal.replace('x', '*')
+        resolução = eval(equal)
+        form.find_element('input').Update(resolução)
+
 
