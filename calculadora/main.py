@@ -24,7 +24,7 @@ form.Layout(janela1())
 
 equal = ''
 res = ''
-list_op = ['+', '-', 'x', '/']
+list_op = ['+', '-', 'x', '/', '=']
 while True:
     button, value = form.read()
     if button == sg.WIN_CLOSED:
@@ -44,28 +44,25 @@ while True:
         equal += str(button)
         form.find_element('input').Update(equal)
     #ERROR
-    if '-' in equal[0]:
-        equal = ""
-        form.find_element('input').Update(equal)
-        sg.Popup('Não é possível fazer operações com números negativos')
-    elif '/' in equal[0]:
-        equal = ""
-        form.find_element('input').Update(equal)
-        sg.Popup('Não é possível fazer operações com números negativos')
-    elif '+' in equal[0]:
-        equal = ""
-        form.find_element('input').Update(equal)
-        sg.Popup('Não é possível fazer operações com números negativos')
-    elif 'x' in equal[0]:
-        equal = ""
-        form.find_element('input').Update(equal)
-        sg.Popup('Não é possível fazer operações com números negativos')
-    elif '.' in equal[0]:
-        equal = "0."
-        form.find_element('input').Update(equal)
-    # elif button == '=':
-    #     if equal.strip == "":
-    #         sg.Popup('Não é possível fazer operações com números negativos')
-      
-
+    if equal != "":
+        if '-' in equal[0]:
+            equal = ""
+            form.find_element('input').Update(equal)
+            sg.Popup('Não é possível fazer operações com números negativos')
+        elif '/' in equal[0]:
+            equal = ""
+            form.find_element('input').Update(equal)
+            sg.Popup('Não é possível fazer operações com números negativos')
+        elif '+' in equal[0]:
+            equal = ""
+            form.find_element('input').Update(equal)
+            sg.Popup('Não é possível fazer operações com números negativos')
+        elif 'x' in equal[0]:
+            equal = ""
+            form.find_element('input').Update(equal)
+            sg.Popup('Não é possível fazer operações com números negativos')
+        elif '.' in equal[0]:
+            equal = "0."
+            form.find_element('input').Update(equal)
+        
 
