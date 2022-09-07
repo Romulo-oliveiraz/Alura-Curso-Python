@@ -91,5 +91,3 @@ while True:
         else:
             equal = equal[:-1] 
             form.find_element('input').Update(equal)
-
-

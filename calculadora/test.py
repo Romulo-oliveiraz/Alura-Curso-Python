@@ -1,75 +1,87 @@
-import PySimpleGUI as sg    
 
-# Layout                                                         # Creat GUI
-layout = [[sg.Txt(''  * 10)],                      
-          [sg.Text('', size=(15, 1), font=('Helvetica', 18), text_color='red', key='input')],
-          [sg.Txt(''  * 10)],
-          [sg.ReadFormButton('('), sg.ReadFormButton(')'), sg.ReadFormButton('c'), sg.ReadFormButton('«')],
-          [sg.ReadFormButton('7'), sg.ReadFormButton('8'), sg.ReadFormButton('9'), sg.ReadFormButton('÷')],
-          [sg.ReadFormButton('4'), sg.ReadFormButton('5'), sg.ReadFormButton('6'), sg.ReadFormButton('x')],
-          [sg.ReadFormButton('1'), sg.ReadFormButton('2'), sg.ReadFormButton('3'), sg.ReadFormButton('-')],
-          [sg.ReadFormButton('.'), sg.ReadFormButton('0'), sg.ReadFormButton('='), sg.ReadFormButton('+')],
-          ]
+from tkinter import E
+import PySimpleGUI as sg
+def janela1():
 
-# Set PySimpleGUI
-form = sg.FlexForm('13411_CALCULATOR', default_button_element_size=(5, 2), auto_size_buttons=False, grab_anywhere=False)
-form.Layout(layout)
 
-# Set Process
-Equal = ''
-List_Op_Error =  ['+','-','*','/','(']
+    base_num = {'size':(6,2), 'font':('Impact', 14), 'button_color':('white', '#000000')}
+    base_op = {'size':(6,2), 'font':('Impact', 14), 'button_color':('white', '#013445')}
 
-# Loop
+
+    layout = [         
+        [sg.Text('', size=(20, 1), font=('Impact', 21), text_color=('white'), background_color='#737373', key='input')],
+        [sg.ReadFormButton('%',**base_op), sg.ReadFormButton('CE', **base_op), sg.ReadFormButton('C', **base_op), sg.ReadFormButton('<<',**base_op)],
+        [sg.ReadFormButton('7',**base_num), sg.ReadFormButton('8', **base_num), sg.ReadFormButton('9', **base_num), sg.ReadFormButton('/', **base_op)],
+        [sg.ReadFormButton('4',**base_num), sg.ReadFormButton('5',**base_num), sg.ReadFormButton('6',**base_num), sg.ReadFormButton('x',**base_op)],
+        [sg.ReadFormButton('1',**base_num), sg.ReadFormButton('2',**base_num), sg.ReadFormButton('3',**base_num), sg.ReadFormButton('-',**base_op)],
+        [sg.ReadFormButton('.',**base_op), sg.ReadFormButton('0',**base_num), sg.ReadFormButton('=',**base_op), sg.ReadFormButton('+',**base_op)],    
+    ]
+    
+    return layout
+        # Janela
+form = sg.FlexForm('Calculadora', default_element_size=(40, 1), background_color='#29000d', auto_size_buttons=False, grab_anywhere=False)
+form.Layout(janela1())
+
+equal = ''
+res = ''
+list_op = ['+', '-', 'x', '/', '*']
 while True:
-    button, value = form.Read()                            # call GUI
-    
-    # Press Button
-    if button is 'c':
-        Equal = ''
-        form.FindElement('input').Update(Equal)
-    elif button is '«':
-        Equal = Equal[:-1]
-        form.FindElement('input').Update(Equal)
-    elif len(Equal) == 16 :
-        pass
-    elif str(button) in '1234567890+-().':
-        Equal += str(button)
-        form.FindElement('input').Update(Equal) 
-    elif button is 'x':
-        Equal += '*'
-        form.FindElement('input').Update(Equal)
-    elif button is '÷':
-        Equal += '/'
-        form.FindElement('input').Update(Equal)
-    
-   # Process Conditional
-    elif button is '=':
-        # Error Case
-        for i in List_Op_Error :  
-            if '*' is Equal[0] or '/' is Equal[0] or ')' is Equal[0]  or i is Equal[-1]:   # Check Error Case
-                Answer = "Error Operation" 
-                break
-            elif Equal == '6001012630187':
-                Answer = 'Apisit.Khomcharoen'
-                break
-            elif '/0' in Equal or '*/' in Equal or '/*' in Equal :
-                Answer = "Error Operation" 
-                break
-            elif '(' in Equal :
-                if ')' not in Equal :
-                    Answer = "Error Operation" 
-                    break   
-            elif '(' not in Equal:
-                if ')' in Equal:
-                    Answer = "Error Operation" 
-                    break
-    # Calculate Case    
-        else :
-            Answer = str("%0.2f" %(eval(Equal)))                         # eval(Equal)  
-            if '.0' in Answer:
-                Answer = str(int(float(Answer)))                         # convert float to int
-        form.FindElement('input').Update(Answer)                         # Update to GUI
-        Equal = Answer
-
-    elif button is 'Quit'  or button is None:                            # QUIT Program
+    button, value = form.read()
+    if button == sg.WIN_CLOSED:
         break
+    if button == 'C':
+        equal = ''
+        res = ''
+        form.find_element('input').Update(equal)
+        form.find_element('input').Update(res)
+    elif button == 'CE':
+        equal = ''
+        form.find_element('input').Update(equal)
+    elif button == '<<':
+        equal = equal[:-1]
+        form.find_element('input').Update(equal)
+    elif str(button) in '0123456789.+-/':
+        equal += str(button)
+        form.find_element('input').Update(equal)
+    elif str(button) in 'x':
+        equal += str(button)
+        form.find_element('input').Update(equal)
+    #ERROR
+    if equal != "":
+        #OP simbols in first caracter ERROR
+        for i in equal:
+            if i in list_op and i in equal[0]:
+                equal = ""
+                form.find_element('input').Update(equal)
+    #zero error
+        if '0' in equal:
+            for i in equal:
+                if i == "0":
+                    if equal[equal.find('0')-1] in list_op:
+                        equal = equal.replace('0', '')
+
+            if equal[0] == '0':
+                equal = equal.replace('0', '')
+        if len(equal) > 1:    
+            if equal[-1] in list_op and equal[-2] in list_op:
+                equal = equal[:-1] 
+                form.find_element('input').Update(equal)
+            if equal[-1] and equal[-2] == '.':
+                equal = equal[:-1] 
+                form.find_element('input').Update(equal)
+
+    #result
+    if button == '=' and equal != '':
+
+        #x sintaxe error 
+        if 'x' in equal:
+            equal = equal.replace('x', '*')
+        print(equal)
+
+        if equal[-1] not in list_op:
+            resolução = eval(equal)
+            form.find_element('input').Update(resolução)
+            equal = str(resolução)
+        else:
+            equal = equal[:-1] 
+            form.find_element('input').Update(equal)
