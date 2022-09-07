@@ -1,6 +1,3 @@
-
-
-from tkinter import E
 import PySimpleGUI as sg
 def janela1():
 
@@ -19,37 +16,44 @@ def janela1():
     ]
     
     return layout
-        # Janela
+
+
 form = sg.FlexForm('Calculadora', default_element_size=(40, 1), background_color='#29000d', auto_size_buttons=False, grab_anywhere=False)
 form.Layout(janela1())
 
 equal = ''
 res = ''
 list_op = ['+', '-', 'x', '/', '*']
+
 while True:
     button, value = form.read()
+
     if button == sg.WIN_CLOSED:
         break
+    #clean the numbers in te screen and in the operation
     if button == 'C':
         equal = ''
         res = ''
         form.find_element('input').Update(equal)
         form.find_element('input').Update(res)
+
     elif button == 'CE':
         equal = ''
         form.find_element('input').Update(equal)
+
+    #erase the last character
     elif button == '<<':
         equal = equal[:-1]
         form.find_element('input').Update(equal)
-    elif str(button) in '0123456789.+-/':
+
+    #puts what was clicked on the screen and in the operation
+    elif str(button) in '0123456789.+-/x':
         equal += str(button)
         form.find_element('input').Update(equal)
-    elif str(button) in 'x':
-        equal += str(button)
-        form.find_element('input').Update(equal)
+
     #ERROR
     if equal != "":
-        #OP simbols in first caracter ERROR
+        #OP symbols in first caracter ERROR
         for i in equal:
             if i in list_op and i in equal[0]:
                 equal = ""
@@ -63,6 +67,7 @@ while True:
 
             if equal[0] == '0':
                 equal = equal.replace('0', '')
+        #mutiples OP symbols error
         if len(equal) > 1:    
             if equal[-1] in list_op and equal[-2] in list_op:
                 equal = equal[:-1] 
@@ -78,7 +83,7 @@ while True:
         if 'x' in equal:
             equal = equal.replace('x', '*')
         print(equal)
-
+        #last caracter operator symble error resolution
         if equal[-1] not in list_op:
             resolução = eval(equal)
             form.find_element('input').Update(resolução)
