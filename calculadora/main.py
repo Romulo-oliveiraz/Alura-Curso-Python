@@ -1,5 +1,6 @@
 
 
+from tkinter import E
 import PySimpleGUI as sg
 def janela1():
 
@@ -24,7 +25,7 @@ form.Layout(janela1())
 
 equal = ''
 res = ''
-list_op = ['+', '-', 'x', '/']
+list_op = ['+', '-', 'x', '/', '*']
 while True:
     button, value = form.read()
     if button == sg.WIN_CLOSED:
@@ -48,28 +49,42 @@ while True:
         form.find_element('input').Update(equal)
     #ERROR
     if equal != "":
-
+        #OP simbols in first caracter ERROR
         for i in equal:
             if i in list_op and i in equal[0]:
                 equal = ""
                 form.find_element('input').Update(equal)
-                
-    #result
-    if button == '=':
+    #zero error
         if '0' in equal:
+            for i in equal:
+                if i == "0":
+                    if equal[equal.find('0')-1] in list_op:
+                        equal = equal.replace('0', '')
 
-            pos = equal.find('0')
-            if equal[pos-1] in list_op:
+            if equal[0] == '0':
                 equal = equal.replace('0', '')
+        if len(equal) > 1:    
+            if equal[-1] in list_op and equal[-2] in list_op:
+                equal = equal[:-1] 
+                form.find_element('input').Update(equal)
+            if equal[-1] and equal[-2] == '.':
+                equal = equal[:-1] 
+                form.find_element('input').Update(equal)
 
-        if '+' in equal[-1]:
-            equal = equal[:-1] 
-            form.find_element('input').Update(equal)
+    #result
+    if button == '=' and equal != '':
 
+        #x sintaxe error 
         if 'x' in equal:
             equal = equal.replace('x', '*')
+        print(equal)
 
-        resolução = eval(equal)
-        form.find_element('input').Update(resolução)
+        if equal[-1] not in list_op:
+            resolução = eval(equal)
+            form.find_element('input').Update(resolução)
+            equal = str(resolução)
+        else:
+            equal = equal[:-1] 
+            form.find_element('input').Update(equal)
 
 
