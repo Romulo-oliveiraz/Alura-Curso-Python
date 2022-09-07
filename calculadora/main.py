@@ -24,7 +24,7 @@ form.Layout(janela1())
 
 equal = ''
 res = ''
-list_op = ['+', '-', 'x', '/', '=']
+list_op = ['+', '-', 'x', '/']
 while True:
     button, value = form.read()
     if button == sg.WIN_CLOSED:
@@ -48,31 +48,27 @@ while True:
         form.find_element('input').Update(equal)
     #ERROR
     if equal != "":
-        if '-' in equal[0]:
-            equal = ""
-            form.find_element('input').Update(equal)
-            sg.Popup('Não é possível fazer operações com números negativos')
-        elif '/' in equal[0]:
-            equal = ""
-            form.find_element('input').Update(equal)
-            sg.Popup('Não é possível fazer operações com números negativos')
-        elif '+' in equal[0]:
-            equal = ""
-            form.find_element('input').Update(equal)
-            sg.Popup('Não é possível fazer operações com números negativos')
-        elif 'x' in equal[0]:
-            equal = ""
-            form.find_element('input').Update(equal)
-            sg.Popup('Não é possível fazer operações com números negativos')
-        elif '.' in equal[0]:
-            equal = "0."
-            form.find_element('input').Update(equal)
+
+        for i in equal:
+            if i in list_op and i in equal[0]:
+                equal = ""
+                form.find_element('input').Update(equal)
+                
+    #result
     if button == '=':
+        if '0' in equal:
+
+            pos = equal.find('0')
+            if equal[pos-1] in list_op:
+                equal = equal.replace('0', '')
+
         if '+' in equal[-1]:
             equal = equal[:-1] 
             form.find_element('input').Update(equal)
+
         if 'x' in equal:
             equal = equal.replace('x', '*')
+
         resolução = eval(equal)
         form.find_element('input').Update(resolução)
 
