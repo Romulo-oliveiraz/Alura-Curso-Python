@@ -22,10 +22,8 @@ form = sg.FlexForm('Calculadora', default_element_size=(40, 1), background_color
 form.Layout(janela1())
 
 equal = ''
-res = ''
 list_op = ['+', '-', 'x', '/', '*']
-list_num = ['1','2','3','4','5','6','7','8','9']
-cont = 0
+
 while True:
     button, value = form.read()
 
@@ -34,9 +32,7 @@ while True:
     #clean the numbers in te screen and in the operation
     if button == 'C':
         equal = ''
-        res = ''
         form.find_element('input').Update(equal)
-        form.find_element('input').Update(res)
 
     elif button == 'CE':
         equal = ''
@@ -51,14 +47,7 @@ while True:
 
     elif str(button) in '0123456789.+-/x':
         
-        if button == '0':
-            if equal != '':
-                if equal[-1] in list_op:
-                    pass
-                else:
-                    equal += str(button)
-    
-        elif equal == '' and button in list_op:
+        if equal == '' and button in list_op:
             pass
         elif equal == '' and button == '.':
             pass
@@ -69,46 +58,33 @@ while True:
 
     #ERROR
     if equal != "":
-        #OP symbols in first caracter ERROR
-        # for i in equal:
-        #     if i in list_op and i in equal[0]:
-        #         equal = ""
-        #         form.find_element('input').Update(equal)
-    #zero error
 
-        if equal[0] == '0':
-            equal = equal.replace('0', '')
-        #mutiples OP symbols error
         if len(equal) > 1:    
             if equal[-1] in list_op and equal[-2] in list_op:
                 equal = equal[:-1] 
                 form.find_element('input').Update(equal)
-            # if equal[-1] and equal[-2] == '.':
-            #     equal = equal[:-1] 
-            #     form.find_element('input').Update(equal)
+            elif equal[-1] == '.' and equal[-2] in list_op:
+                equal = equal[:-1] 
+                form.find_element('input').Update(equal)
 
     #result
     if button == '=' and equal != '':
-        # if '0' in equal:
-        #     cont= 0
-        #     for i in equal:
-        #         print(i)
-        #         if i == "0":
-        #             if equal[equal.find('0')-1] in list_op:
-        #                 equal = equal.replace('0', '')
-        for i in equal:
-            if i in list_op and i in equal[0]:
-                equal = ""
+
+        try:
+            for i in equal:
+                if i in list_op and i in equal[0]:
+                    equal = ""
+                    form.find_element('input').Update(equal)
+            #x sintaxe error 
+            if 'x' in equal:
+                equal = equal.replace('x', '*')
+            #last caracter operator symble error resolution
+            if equal[-1] not in list_op:
+                resolução = eval(equal)
+                form.find_element('input').Update(resolução)
+                equal = str(resolução)
+            else:
+                equal = equal[:-1] 
                 form.find_element('input').Update(equal)
-        #x sintaxe error 
-        if 'x' in equal:
-            equal = equal.replace('x', '*')
-        print(equal)
-        #last caracter operator symble error resolution
-        if equal[-1] not in list_op:
-            resolução = eval(equal)
-            form.find_element('input').Update(resolução)
-            equal = str(resolução)
-        else:
-            equal = equal[:-1] 
-            form.find_element('input').Update(equal)
+        except ZeroDivisionError:
+            sg.popup('Não é possivel dividir por 0!')
