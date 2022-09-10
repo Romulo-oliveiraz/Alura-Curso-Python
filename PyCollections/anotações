@@ -84,7 +84,12 @@ np.array([<numeros>]): cria um array com os numeros
     <NEW_CONJUNTO> = frozenset(<CONJUNTO>) -> faz com que o novo conjunto se torne um conjunto imutavel.
 
 > dicionario
+    from collections import defaultdict -> trabalhar com um dict com valor fixo.
     <NOME_VARIAVEL> = {<CHAVE>:<VALOR>} -> Cria um dict e adc ele na variavel
     <NOME_VARIAVEL>[<"CHAVE">] -> retorna o valor referente a chave.
     <NOME_VARIAVEL>[<"CHAVE">, <ALGUM_VALOR>] -> Caso não há esta chave retorna algm valor definido.
-
+    <NOME_VARIAVEL>[<"CHAVE">] = <VALOR> -> Muda o valor da chave selecionado para o valor inserido.
+    del <NOME_VARIAVEL>[<"CHAVE">] = apaga a chave selecionada.
+    for <VAR> in <NOME_DICT>.values() -> roda pelos valores do dict
+    for <VAR> in <NOME_DICT>.keys() -> roda pelas chaves do dict
+    for <VAR_KEY>, <VAR_VALUES> in <NOME_DICT>: -> roda pelas chaves e valores ao mesmo tempo colocando as chaves na <VAR_KEY> e os valores na <VAR_VALUES>.
