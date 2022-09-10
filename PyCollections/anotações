@@ -60,4 +60,31 @@ np.array([<numeros>]): cria um array com os numeros
     __lt__(self, outro): é necessario adc este methodo caso queira ordenar uma lista com objetos
     functools total_ordering: dá para classe outras comparações no caso <= >= necessitando apenas adc os methodos eq e lt
 ############################################################################################################################
+> Python Collections parte 2: listas e tuplas
+    <NOME_NOVA_LISTA> = <LISTA>.copy() = copia uma lista.
+> conjuntos:
+    São mutaveis.
+    se utiliza a função set, neles não há elementos repetidos!
+
+    set(<INTERAVEL>) ou {<ELEMENTOS>}
+
+    Caso a ordem dos elementos não importe o uso dos conjuntos pode ser indicado,
+    pois diferente da lista ele n tem um acesso aleatorio e nem posição definida para os elementos.
+
+    <CONJUNTO> | <CONJUNTO> -> O sinal '|', siginifica OU e funciona como um extend, ou seja junta os dois conjuntos.
+
+    <CONJUNTO> & <CONJUNTO> -> O sinal '&', verifica  os dois conjuntos e procura a intersseção entre eles.
+
+    <CONJUNTO> - <CONJUNTO> -> O sinal '-', busca elementos q estão no 1 conjunto mas não estão no 2 conjunto.
+
+    <CONJUNTO> ^ <CONJUNTO> -> o sinal '^', busca os elementos que estão somente em 1 dos conjuntos.
+
+    <CONJUNTO>.add(<ELEMENTO>) -> adc um elemento dentro do conjunto.
+
+    <NEW_CONJUNTO> = frozenset(<CONJUNTO>) -> faz com que o novo conjunto se torne um conjunto imutavel.
+
+> dicionario
+    <NOME_VARIAVEL> = {<CHAVE>:<VALOR>} -> Cria um dict e adc ele na variavel
+    <NOME_VARIAVEL>[<"CHAVE">] -> retorna o valor referente a chave.
+    <NOME_VARIAVEL>[<"CHAVE">, <ALGUM_VALOR>] -> Caso não há esta chave retorna algm valor definido.
 
