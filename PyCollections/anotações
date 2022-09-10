@@ -59,4 +59,5 @@ np.array([<numeros>]): cria um array com os numeros
 >Ordernar objs 
     __lt__(self, outro): é necessario adc este methodo caso queira ordenar uma lista com objetos
     functools total_ordering: dá para classe outras comparações no caso <= >= necessitando apenas adc os methodos eq e lt
-    
+############################################################################################################################
+
