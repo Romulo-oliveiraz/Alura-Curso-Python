@@ -49,6 +49,9 @@ np.array([<numeros>]): cria um array com os numeros
 > NÃO AFETA A LISTA.
    sorted(<LISTA>) ordena todos os elementos da lista do menor p/ o maior
    reversed(<LISTA>) bota a ordem dos elementos de tras para frente.
+> Sorted com uma lista de objetos:
+    sorted(<LISTA>, key = <OBJ>.<GETTER>)
+    sorted(<LISTA>, key = <OBJ>.<GETTER>, reverse=True)
 >  ou para botar em ordem de valor:
    sorted(<LISTA>, reverse=True) no caso ele coloca na ordem os elementos do maior p/ o menor
    lista com objs = sorted(<LISTA>, key=<ALGO DO OBJ PARA SER COMPARADO>):
