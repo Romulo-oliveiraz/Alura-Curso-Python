@@ -19,6 +19,8 @@ REGEX:
 # - determina o num inicial e o num final ex[1-9] num de 1 a 9
 # ? mostra q o caractere pode ou n aparecer
 # {} apos um conjunto determina quantas vezes ele vai aparecer.
+# \w pode ser num ou letras.
+# re.findall: busca no texto usando um padrao todas as correspondencias.
 # re.compile(pattern, flags=0): Compila um padrão de expressão regular em um objeto expressão regular, que pode ser usado para correspondência usando seu match(), search()
 
 # re.search(pattern, string, flags=0): Percorre a string procurando o primeiro local onde o padrão pattern de expressão regular produz uma correspondência e retorna um objeto correspondência encontrado. Retorna None se nenhuma posição na string corresponder ao padrão
