@@ -1,5 +1,4 @@
-from re import T
-from cnpj import TelefonesBr
+from telefone import TelefonesBr
 
 phone = "5521926465432"
 
