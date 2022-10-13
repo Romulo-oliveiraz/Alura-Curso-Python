@@ -1,0 +1,1 @@
+from codigo.main import Funcionario

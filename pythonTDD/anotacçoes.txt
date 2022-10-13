@@ -1,0 +1,14 @@
+#####################################################
+> Python e TDD: explorando testes unitários:
+#####################################################
+> Teste Unitario: Testa uma pequena parte da aplicação.
+> Teste de Integração: Testa a integração e o relacionamento entre os metodos da aplicação.
+> Teste de ponta a ponta: Testa toda a aplicação do começo ao fim dela.
+Para o pytest entender melhor se tal metodo é um teste é uma boa pratica utilizar test_ no inicio do nome do metodo
+> Arrange: 
+# A tradução não literal seria algo como organizar. A organização, nesse caso, 
+# seria focada nos passos preliminares necessários para montar contexto inicial do teste;
+> Act: 
+# A tradução não literal seria algo como agir. Nesse caso seria a ação que parte dos passos organizados na primeira etapa e leva ao que vamos averiguar no final;
+> Assert: 
+# A tradução não literal seria algo como averiguar. Nesse caso, averiguarmos que o desfecho trazido pela ação é realmente aquele que esperamos.
