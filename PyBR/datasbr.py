@@ -4,3 +4,4 @@ cadastro = DatasBr()
 
 print(cadastro.mes_cadastro())
 print(cadastro.dia_semana())
+print(cadastro)
