@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+
+from flask import Flask, render_template, request, redirect
 
 # <!-- Utiliza o {% for <codigo> %} -->
 # <!-- {% endfor %} para fechar a estrutura de repetição -->
@@ -26,27 +27,41 @@ class Jogo:
     # def __str__(self):
     #     return f'Nome:{self.nome} - Categoria:{self.categoria} - Console:{self.console}'
 
+jogo1 = Jogo('Valorant', 'FPS', 'PC')
+jogo2 = Jogo('God of War', 'Aventura', 'PlayStation')
+jogo3 = Jogo('Forza', 'Corrida', 'Xbox')
+
+lista = [jogo1, jogo2, jogo3]
+
+
 app = Flask(__name__)
 
 #cria um rota
-@app.route('/inicio')
-def ola():
-    jogo1 = Jogo('Valorant', 'FPS', 'PC')
-    jogo2 = Jogo('God of War', 'Aventura', 'PlayStation')
-    jogo3 = Jogo('Forza', 'Corrida', 'Xbox')
-
-    lista = [jogo1, jogo2, jogo3]
-
+@app.route('/')
+def index():
     #render_template importa um template html.
     #com ele é possivel inserir uma variavel no arquivo html utilizando {{<variavel>}} e atribuir um valor.
     return render_template("lista.html", titulo='Jogos', jogos=lista)
 
-@app.route(/)
+@app.route('/novo')
+def novo():
+    return render_template('novo.html', titulo='Novo Jogo')
 
+@app.route('/criar', methods=['POST',])
+def criar():
+    #request() é a função do flask para capturar as informações recebidas na rota
+    nome = request.form['nome']
+    categoria = request.form['categoria']
+    console = request.form['console']
 
+    jogo = Jogo(nome, categoria, console)
 
+    lista.append(jogo)
+
+    #O redirect() redireciona para outra rota, neste caso a principal.
+    return redirect('/')
 
 #inicia o app
 #É possivel definir um host e uma porta na hora de iniciar
 #ex: app.run(host='0.0.0.0', port=8080)
-app.run()
+app.run(debug=True)
