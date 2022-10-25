@@ -34,14 +34,14 @@ flash('<menssagem>') = mostra uma especie de popup na pagina.
 
 > PARA UTILIZAR O FLASH PARA POPUPS É NECESSARIO INSERIR ESSE COMANDO NO HTML DA PAGINA LOGO APOS O CONTAINER
 {% with messages = get_flashed_messages() %}
-            {% if messages %} 
-                <ul id="messages" class="list-unstyled">
-                {% for message in messages %}
-                    <li class="alert alert-success">{{ message }}</li>
-                {% endfor %}
-                </ul>
-            {% endif %}
-        {% endwith %}
+    {% if messages %} 
+        <ul id="messages" class="list-unstyled">
+        {% for message in messages %}
+            <li class="alert alert-success">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endwith %}
 
 > Querry String:
 query string - é utilizado para mandar uma informação pelo url
