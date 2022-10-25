@@ -1,70 +1,37 @@
 
 from flask import Flask, render_template, request, redirect, session, flash, url_for
-
-# <!-- Utiliza o {% for <codigo> %} -->
-# <!-- {% endfor %} para fechar o comando -->
-# para utilizar comandos em strings no html pode se usar assim:
-# <h1>{{  titulo|title  }}</h1> - para deixar todas as primeiras letras maiusculas
-# ou utilizar outros filtros como:
-# upper: colocar os caracteres em caixa alta;
-# round: arredondar números;
-# trim: remover espaços do início e do fim do texto;
-# default('texto exibido por padrão') - quando queremos mostrar algo, 
-#  caso a variável esteja vazia ou nula.
-#
-# Tipos de Delimitadores do Jinja2:
-
-# {%....%}: usado para inserir estruturas Python dentro de um arquivo html;
-# {{....}}: usado para facilitar a exibição de código python como um output em um template HTML. Alternativa: {% print(....) %};
-# {#....#}: usado para adicionar comentários que não serão exibidos no output do template HTML.
-# url_for("<pasta inicial do arq css, filename='<o arquivo a ser encontrado>'>") - vai buscar a pasta e depois o arquivo.
-#
-# Para inserir o template no arquivo html:
-# % extends "template.html" %
-# % block conteudo %
-#       <CODIGO HTML>
-# % endblock %
-
-# guarda informaçoes nos cookies do navegador
-# session[<nome p/ array>] = request.form['<alguma que do html>']
-# para utilizar o session geralmente é necessario o uso da func app.secret_key = '<name of the key>'
-# flash('<menssagem>') = mostra uma especie de popup na pagina.
-
-# PARA UTILIZAR O FLASH PARA POPUPS É NECESSARIO INSERIR ESSE COMANDO NO HTML DA PAGINA LOGO APOS O CONTAINER
-# {% with messages = get_flashed_messages() %}
-#             {% if messages %} 
-#                 <ul id="messages" class="list-unstyled">
-#                 {% for message in messages %}
-#                     <li class="alert alert-success">{{ message }}</li>
-#                 {% endfor %}
-#                 </ul>
-#             {% endif %}
-#         {% endwith %}
-
-# query string - é utilizado para mandar uma informação pelo url
-# para pegar o argumento que a querry string carrega se usa <nome_var> = request.args.get('<nome da QuerryString>')
-
-# url_for - muito usado para boas praticas ja que ele busca o local da rota não pelo nome dela mas sim pela função.
-# 
-#  
+# CLASS GAME 
 class Jogo:
     def __init__(self, nome, categoria, console):
         self.nome = nome
         self.categoria = categoria
         self.console = console
-    
-    # def __str__(self):
-    #     return f'Nome:{self.nome} - Categoria:{self.categoria} - Console:{self.console}'
 
+#GAMES
 jogo1 = Jogo('Valorant', 'FPS', 'PC')
 jogo2 = Jogo('God of War', 'Aventura', 'PlayStation')
 jogo3 = Jogo('Forza', 'Corrida', 'Xbox')
 
+#GAMES LIST
 lista = [jogo1, jogo2, jogo3]
-
+####################################################################################################
+#CLASS USER
 class Usuario:
-    pass
+    def __init__(self, nome, senha, nick):
+        self.nome = nome
+        self.nick = nick
+        self.senha = senha
+        
+#USERS
+usuario1 = Usuario('nike', 'adidas', 'NK')       
+usuario2 = Usuario('supra', 'nissan', 'Braia')     
+usuario3 = Usuario('gta', 'rockstar', 'GTA5')    
 
+#USERS DICT
+usuarios = {usuario1.nick : usuario1, 
+            usuario2.nick : usuario2, 
+            usuario3.nick : usuario3}
+####################################################################################################
 
 app = Flask(__name__)
 app.secret_key = 'junin'
@@ -104,11 +71,13 @@ def login():
 
 @app.route('/autenticar', methods=['POST',])
 def autenticar():
-    if 'python' == request.form['senha']:
-        session['usuario_logado'] = request.form['usuario']
-        flash(session['usuario_logado']+' logado com sucesso!')
-        prox_page = request.form['proxima']
-        return redirect(prox_page)
+    if request.form['usuario'] in usuarios:
+        usuario = usuarios[request.form['usuario']]
+        if request.form['senha'] == usuario.senha:
+            session['usuario_logado'] = usuario.nick
+            flash(usuario.nick + ' logado com sucesso!')
+            prox_page = request.form['proxima']
+            return redirect(prox_page)
     else:
         flash('Usuário não logado!')
         return redirect(url_for('login'))
