@@ -64,3 +64,13 @@ O redirect(<rota>) redireciona para outra rota,
 inicia o app
 É possivel definir um host e uma porta na hora de iniciar
 ex: app.run(host='0.0.0.0', port=8080)
+
+################################################################
+> USANDO MYSQL:
+
+Para acessar pelo cmd se usa o comando ( mysql -u <USER> -p )
+SHOW databases; - mostra as databases que há no pc.
+\u <DATABASE NAME> - seleciona a database.
+SHOW Tables; - mostra as tabelas do banco de dados 
+DESC <tabela> - mostra as colunas da tabela
+select <Coluna, ou * p/ SELECIONAR TUDO> from <TABELA> - Mostra oque tem armazenado na tabela determinada ou na coluna selecionada.

@@ -1,40 +1,42 @@
 
 from flask import Flask, render_template, request, redirect, session, flash, url_for
+from flask_sqlalchemy import SQLAlchemy
+
 # CLASS GAME 
-class Jogo:
-    def __init__(self, nome, categoria, console):
-        self.nome = nome
-        self.categoria = categoria
-        self.console = console
-
-#GAMES
-jogo1 = Jogo('Valorant', 'FPS', 'PC')
-jogo2 = Jogo('God of War', 'Aventura', 'PlayStation')
-jogo3 = Jogo('Forza', 'Corrida', 'Xbox')
-
-#GAMES LIST
-lista = [jogo1, jogo2, jogo3]
-####################################################################################################
-#CLASS USER
-class Usuario:
-    def __init__(self, nome, senha, nick):
-        self.nome = nome
-        self.nick = nick
-        self.senha = senha
-        
-#USERS
-usuario1 = Usuario('nike', 'adidas', 'NK')       
-usuario2 = Usuario('supra', 'nissan', 'Braia')     
-usuario3 = Usuario('gta', 'rockstar', 'GTA5')    
-
-#USERS DICT
-usuarios = {usuario1.nick : usuario1, 
-            usuario2.nick : usuario2, 
-            usuario3.nick : usuario3}
 ####################################################################################################
 
 app = Flask(__name__)
 app.secret_key = 'junin'
+
+#cria uma URI na config do app para fazer a conexão com o banco de dados (MYSQL).
+app.config['SQLALCHEMY_DATABASE_URI'] = \
+    '{SGDB}://{user}:{senha}@{servidor}/{database}'.format(
+        SGDB = 'mysql+mysqlconnector',
+        user = 'root',
+        senha = 'admin',
+        servidor = 'localhost',
+        database = 'jogoteca'
+    )
+    
+db = SQLAlchemy(app)
+
+class Jogos(db.Model):
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True )
+    nome = db.Column(db.String(50), nullable=False)
+    categoria = db.Column(db.String(40), nullable=False)
+    console = db.Column(db.String(20), nullable=False)
+
+    def __repr__(self):
+        return '<Name %r>' % self.name
+
+class Usuarios(db.Model):
+    nickname = db.Column(db.String(8), primary_key=True)
+    nome = db.Column(db.String(20), nullable=False)
+    senha = db.Column(db.String(100), nullable=False)
+
+    def __repr__(self):
+        return '<Name %r>' % self.name
+
 
 #cria um rota
 @app.route('/')
