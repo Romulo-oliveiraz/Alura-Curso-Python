@@ -5,30 +5,19 @@ from helpers import recovery_img, del_arquivo, FormularioJogo, FormularioUsuario
 import time
 
 #cria um rota
+#------------------------------------------READ-------------------------------------------#
 @app.route('/')
 def index():
     lista = Jogos.query.order_by(Jogos.id)
     return render_template('lista.html', titulo='Jogos', jogos=lista)
 
+#------------------------------------------CREATE------------------------------------------#
 @app.route('/novo')
 def novo():
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
         return redirect(url_for('login', proxima=url_for('novo')))
     form = FormularioJogo()
     return render_template('novo.html', titulo='Novo Jogo', form=form)
-
-@app.route('/editar/<int:id>')
-def editar(id):
-
-    if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('editar', id=id)))
-    jogo = Jogos.query.filter_by(id=id).first()
-    form = FormularioJogo()
-    form.nome.data = jogo.nome
-    form.categoria.data = jogo.categoria
-    form.console.data = jogo.console
-    capa_jogo = recovery_img(id)
-    return render_template('editar.html', titulo='Editando Jogo', id=id, capa_jogo=capa_jogo, form=form)
 
 @app.route('/criar', methods=['POST',])
 def criar():
@@ -58,14 +47,19 @@ def criar():
 
     return redirect(url_for('index'))
 
-@app.route('/deletar/<int:id>')
-def deletar(id):
+#------------------------------------------UPDATE--------------------------------------#
+@app.route('/editar/<int:id>')
+def editar(id):
+
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login',))
-    Jogos.query.filter_by(id=id).delete()
-    db.session.commit()
-    flash('O jogo foi excluido!')
-    return(redirect(url_for('index')))
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
+    jogo = Jogos.query.filter_by(id=id).first()
+    form = FormularioJogo()
+    form.nome.data = jogo.nome
+    form.categoria.data = jogo.categoria
+    form.console.data = jogo.console
+    capa_jogo = recovery_img(id)
+    return render_template('editar.html', titulo='Editando Jogo', id=id, capa_jogo=capa_jogo, form=form)
 
 @app.route('/atualizar', methods=['POST',])
 def atualizar():
@@ -88,8 +82,16 @@ def atualizar():
             arquivo.save(f'{upload_path}/capa{jogo.id}-{timestamp}.jpg')
 
     return redirect(url_for('index'))
-
-
+#-------------------------------------------DELETE-------------------------------------#
+@app.route('/deletar/<int:id>')
+def deletar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login',))
+    Jogos.query.filter_by(id=id).delete()
+    db.session.commit()
+    flash('O jogo foi excluido!')
+    return(redirect(url_for('index')))
+#--------------------------------------LOGIN---------------------------------------------#
 @app.route('/login')
 def login():
     proxima = request.args.get('proxima')
@@ -113,12 +115,14 @@ def autenticar():
         flash('Usuário não logado.')
         return redirect(url_for('login'))
 
+#-----------------------------------LOGOUT---------------------------------------------#
 @app.route('/logout')
 def logout():
     session['usuario_logado'] = None
     flash('Logout efetuado com sucesso!')
     return redirect(url_for('index'))
 
+#--------------------------------DEFAULT-IMAGE-----------------------------------------#
 @app.route('/uploads/<nome_arquivo>')
 def imagem(nome_arquivo):
     return send_from_directory('uploads', nome_arquivo)

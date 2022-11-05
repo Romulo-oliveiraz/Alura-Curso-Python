@@ -74,3 +74,17 @@ SHOW databases; - mostra as databases que há no pc.
 SHOW Tables; - mostra as tabelas do banco de dados 
 DESC <tabela> - mostra as colunas da tabela
 select <Coluna, ou * p/ SELECIONAR TUDO> from <TABELA> - Mostra oque tem armazenado na tabela determinada ou na coluna selecionada.
+
+> PASSAR IMAGEM PRO FLASK PELO HTML:
+
+Para isso é necessario no form o enctype="multipart/form-data
+Ex:
+        <figure class="img-thumbnail col-md-4">
+          <img class="img-fluid"  src="{{ url_for('imagem', nome_arquivo=capa_jogo) }}">
+          <figcaption>
+            <label class="fileContainer">
+              Mudar Capa
+              <input type="file" name="arquivo" accept=".jpg">
+            </label>
+          </figcaption>
+        </figure>

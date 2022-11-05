@@ -11,4 +11,5 @@ SQLALCHEMY_DATABASE_URI = '{SGDB}://{user}:{senha}@{servidor}/{database}'.format
         database = 'jogoteca'
     )
 
+#PEGA O DIRETORIO REAL DA PASTA UPLOADS
 UPLOAD_PATH = os.path.dirname(os.path.abspath(__file__)) + '/uploads'

@@ -10,6 +10,7 @@ app = Flask(__name__)
 app.config.from_pyfile('config.py')
     
 db = SQLAlchemy(app)
+#ADICIONA A ENCRYPITAÇÃO PARA EVITAR ATAQUES DE CSRF
 csrf = CSRFProtect(app)
 
 from rotas import *
