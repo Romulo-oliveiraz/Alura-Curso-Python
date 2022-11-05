@@ -6,19 +6,33 @@
                     <th>Nome</th>
                     <th>Categoria</th>
                     <th>Console</th>
-                    <th></th>
+                    <th>Ações</th>
                 </tr>
             </thead>
             <tbody>
                 {% for jogo in jogos %}
                 <tr>
                     <td>{{ jogo.nome|title }}</td>
-                    <td>{{ jogo.categoria|title }}</td>
-                    <td>{{ jogo.console|title }}</td>
-                    <td><a href="{{ url_for('editar', id=jogo.id) }}">Editar</a></td>
+                    <td>{{ jogo.categoria }}</td>
+                    <td>{{ jogo.console}}</td>
+                    <td>
+                        <div>
+                            <a href="{{ url_for('editar', id=jogo.id) }}">Editar</a>
+                        </div>
+                        <div>
+                            <a href="{{ url_for('deletar', id=jogo.id) }}">Excluir</a>
+                        </div>
+                    </td>
                 </tr>
                 {% endfor %}
-
             </tbody>
         </table>
+        <div>
+            <a href="{{ url_for('novo') }}">
+                <button class="btn btn-primary">Novo</button>
+            </a>
+            <a href="{{ url_for('logout') }}">
+                <button class="btn btn-primary">Logout</button>
+            </a>
+        </div>
 {% endblock %}

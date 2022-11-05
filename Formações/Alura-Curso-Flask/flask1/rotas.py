@@ -1,6 +1,7 @@
 from modelos import Usuarios, Jogos
 from flask import render_template, request, redirect, session, flash, url_for
 from flask1 import app, db
+import os
 
 
 #cria um rota
@@ -18,7 +19,7 @@ def novo():
 @app.route('/editar/<int:id>')
 def editar(id):
     if 'usuario_logado' not in session or session['usuario_logado'] == None:
-        return redirect(url_for('login', proxima=url_for('editar')))
+        return redirect(url_for('login', proxima=url_for('editar', id=id)))
     jogo = Jogos.query.filter_by(id=id).first()
     return render_template('editar.html', titulo='Editando Jogo', jogo=jogo)
 
@@ -38,7 +39,19 @@ def criar():
     db.session.add(novo_jogo)
     db.session.commit()
 
+    arquivo = request.files['arquivo']
+    arquivo.save(os.path.join(app.root_path, 'uploads', arquivo.filename))
+
     return redirect(url_for('index'))
+
+@app.route('/deletar/<int:id>')
+def deletar(id):
+    if 'usuario_logado' not in session or session['usuario_logado'] == None:
+        return redirect(url_for('login',))
+    Jogos.query.filter_by(id=id).delete()
+    db.session.commit()
+    flash('O jogo foi excluido!')
+    return(redirect(url_for('index')))
 
 @app.route('/atualizar', methods=['POST',])
 def atualizar():
@@ -66,6 +79,9 @@ def autenticar():
             flash(usuario.nickname + ' logado com sucesso!')
             proxima_pagina = request.form['proxima']
             return redirect(proxima_pagina)
+        else:
+            flash('Usuario ou senha incorreta!')
+            return redirect(url_for('login'))
     else:
         flash('Usuário não logado.')
         return redirect(url_for('login'))
