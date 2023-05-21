@@ -16,6 +16,12 @@ class FormularioUsuario(FlaskForm):
     senha = PasswordField('Senha', [validators.DataRequired(), validators.length(min=1, max=100)])
     login = SubmitField('Login')
 
+class FormularioCreateUser(FlaskForm):
+    nome = StringField('Nickname', [validators.DataRequired(), validators.length(min=1, max=20)])
+    nickname = StringField('Nickname', [validators.DataRequired(), validators.length(min=1, max=8)])
+    senha = PasswordField('Senha', [validators.DataRequired(), validators.length(min=1, max=100)])
+    create = SubmitField('Create')
+
 #SE HOUVER RETORTNA IMAGEM SE NÃO RETORNA IMAGEM PADRAO
 def recovery_img(id):
     for nome_arquivo in os.listdir(app.config['UPLOAD_PATH']):

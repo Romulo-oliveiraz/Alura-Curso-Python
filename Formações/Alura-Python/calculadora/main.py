@@ -83,11 +83,27 @@ while True:
                         equal = equal.replace(')', '')
                         form.find_element('input').Update(equal)
                         print(equal)
+                    # elif equal.find('()'):
+                    #     equal = equal.replace('()', '0')
+                    #     form.find_element('input').Update(equal)
+                    # if equal.find(')('):
+                    #     equal = equal.replace(')(', '0')
+                    #     form.find_element('input').Update(equal)
 
                 #x sintaxe error 
                 if 'x' in equal:
                     equal = equal.replace('x', '*')
 
+                if equal.find(')(') != -1:
+                    equal = equal.replace(')(', '0')
+                    form.find_element('input').Update(equal)
+
+                if equal.find('()') != -1:
+                    equal = equal.replace('()', '0')
+                    form.find_element('input').Update(equal)
+
+                print('c')
+                print(equal)
                 #last caracter operator symble error resolution
                 if equal[-1] not in list_op:
                     resolução = eval(equal)

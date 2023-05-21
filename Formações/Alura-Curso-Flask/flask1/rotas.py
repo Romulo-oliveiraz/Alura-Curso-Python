@@ -1,7 +1,7 @@
 from modelos import Usuarios, Jogos
 from flask import render_template, request, redirect, session, flash, url_for, send_from_directory
 from flask1 import app, db
-from helpers import recovery_img, del_arquivo, FormularioJogo, FormularioUsuario
+from helpers import recovery_img, del_arquivo, FormularioJogo, FormularioUsuario, FormularioCreateUser
 import time
 
 #cria um rota
@@ -47,6 +47,18 @@ def criar():
 
     return redirect(url_for('index'))
 
+@app.route('/criaruser')
+def criaruser():
+    form = FormularioCreateUser(request.form)
+    nome = form.nome.data
+    nickname = form.nickname.data
+    senha =  form.senha.data
+
+    usuario=Usuarios.query.filter_by(nickname=nickname).first()
+    if usuario:
+        flash('Nickname ja utilizado!')
+        return redirect(url_for('criaruser'))
+    return render_template('criarusuario.html', titulo='Criar Usuario', form=form)
 #------------------------------------------UPDATE--------------------------------------#
 @app.route('/editar/<int:id>')
 def editar(id):
